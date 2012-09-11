@@ -42,7 +42,7 @@ end
 if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
   ruby_block "update-java-alternatives" do
     block do
-      if platform?("ubuntu", "debian") and version == 6
+      if platform?("ubuntu", "debian") and version.to_i == 6
         run_context = Chef::RunContext.new(node, {})
         r = Chef::Resource::Execute.new("update-java-alternatives", run_context)
         r.command "update-java-alternatives -s java-6-openjdk"
